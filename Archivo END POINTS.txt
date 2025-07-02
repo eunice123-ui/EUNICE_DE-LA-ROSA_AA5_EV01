@@ -1,0 +1,87 @@
+📘 Documento Técnico de Endpoints – API REST de Registro y Autenticación
+
+
+🛠️ Entorno de pruebas
+Servidor local: XAMPP (Apache + MySQL)
+
+Base de datos: api_users
+
+Cliente de pruebas: Postman
+
+Lenguaje backend: PHP 8
+
+Método de intercambio de datos: JSON
+
+
+🔐 Endpoint 1: Registro de usuario
+Tipo de petición: POST
+
+Ruta del recurso: http://localhost/api_login/register.php
+
+Descripción funcional:
+Este endpoint permite registrar un nuevo usuario,
+almacenando su nombre y contraseña en la base de datos de forma segura 
+(la contraseña se guarda con hash).
+
+✔ Formato de solicitud:
+POST /api_login/register.php HTTP/1.1
+Host: localhost
+Content-Type: application/json
+
+📦 Cuerpo de la petición (JSON):
+{
+  "username": "nuevo_usuario",
+  "password": "clave_segura"
+}
+
+📤 Respuestas esperadas:
+200 OK → {"message": "Usuario registrado exitosamente"}
+
+400 Bad Request → {"message": "Faltan campos"}
+
+500 Internal Server Error → {"message": "Error en el registro"}
+
+🔑 Endpoint 2: Inicio de sesión
+Tipo de petición: POST
+
+Ruta del recurso: http://localhost/api_login/login.php
+
+Descripción funcional:
+Este endpoint verifica las credenciales enviadas por el usuario. 
+Si son correctas, permite el acceso. Si no, responde con errores adecuados.
+
+✔ Formato de solicitud:
+POST /api_login/login.php HTTP/1.1
+Host: localhost
+Content-Type: application/json
+
+📦 Cuerpo de la petición (JSON):
+{
+  "username": "usuario_existente",
+  "password": "clave_correcta"
+}
+
+📤 Respuestas esperadas:
+200 OK → {"message": "Autenticación satisfactoria"}
+
+401 Unauthorized → {"message": "Contraseña incorrecta"}
+
+404 Not Found → {"message": "Usuario no encontrado"}
+
+🧪 Recomendaciones para pruebas en Postman
+Asegúrese de tener encendido Apache y MySQL desde XAMPP.
+
+Utilice el tipo raw en el body y seleccione JSON como formato.
+
+Agregue el encabezado Content-Type: application/json en cada petición.
+
+Compruebe en phpMyAdmin si los datos se guardan correctamente.
+
+Conclusión
+Los endpoints desarrollados permiten registrar y autenticar usuarios
+de forma funcional y segura en un entorno local. 
+Se validaron respuestas exitosas y de error en distintos escenarios usando Postman,
+cumpliendo los requerimientos de la evidencia.
+
+
+
